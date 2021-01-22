@@ -1,0 +1,53 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 30%;
+}
+
+.top-division {
+    display: flex;
+    justify-content: center;
+    margin: 0px;
+}
+
+
+label {
+    font-family: sans-serif;
+    font-weight: bolder;
+    font-size: 22px;
+    margin: 10px 0px 10px 0px;
+}
+
+input {
+    padding: 2%;
+}
+
+.login-button {
+    background-color: green;
+    color: #ffffff;
+    font-size: 22px;
+    border: 0px;
+    cursor: pointer;
+    margin-top: 10px;
+    padding: 2%;
+}
+
+a {
+    text-decoration: none;
+    color: #186CA3;
+    font-size: 20px;
+}
+
+@media (min-width: 300px) and (max-width: 500px) {
+    form {
+        width: 80%;
+    }
+}

@@ -1,0 +1,54 @@
+
+body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+h1 {
+    padding: 10px 10px 10px 10px;
+    text-align: center;
+    margin: 0px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 30%;
+}
+
+
+.submit-button {
+    background-color: orange;
+    color: #FFFFFF;
+    padding: 2%;
+    font-size: 22px;
+    margin-top: 10px;
+    border: 0;
+    cursor: pointer;
+}
+
+input {
+    padding: 2%;
+}
+
+label {
+    font-size: 22px;
+    font-weight: bolder;
+    margin: 10px 0 10px 0;
+    font-family: sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: #186CA3;
+    font-size: 20px;
+}
+
+@media (min-width: 300px) and (max-width: 500px) {
+    form {
+        width: 80%;
+    }
+}
