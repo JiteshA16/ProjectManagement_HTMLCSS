@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title>Home page</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" type="text/css" media="screen" href="./home.css" />
+</head>
+<body>
+   <header>
+      <span onclick="toggleMenu()">&#9776</span>
+       Project Management App
+   </header>
+   
+   <div class="container">
+      <div class="menu-block">Menu
+         <ul></ul>
+      </div>
+      <div class="task-container">
+
+         <div class="addboard-block">
+            <input type="text" placeholder="eg., New board name" value="" style="width: 80%;"/>
+            <button class="addboard-button">Add board</button>
+         </div>
+
+         <section>
+            <div>Board name</div>
+
+            <div class="project-container">
+
+               <div class="project-card">
+                  Project one
+                  <ul>
+                     <li>Task one</li>
+                     <li>Task two</li>
+                  </ul>
+               </div>
+
+               <div class="project-card">
+                  Project two
+                  <ul>
+                     <li>Task one</li>
+                     <li>Task two</li>
+                  </ul>
+               </div>
+
+               <div class="project-card">
+                  Project three
+                  <ul>
+                     <li>Task one</li>
+                     <li>Task two</li>
+                  </ul>
+               </div>
+
+               <div class="project-card">
+                  Project four
+                  <ul>
+                     <li>Task one</li>
+                     <li>Task two</li>
+                  </ul>
+               </div>
+
+            </div>
+         </section>
+
+      </div>
+   </div>
+   <script src="./home.js"></script>
+</body>
+</html>
