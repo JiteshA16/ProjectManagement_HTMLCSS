@@ -27,7 +27,7 @@ function showProjects(listId) {
 }
 
 function removeProjects() {
-    document.getElementById('projectList').innerHTML = '';
+    //document.getElementById('projectList').innerHTML = '';
 }
 
 var idValue = 1;
@@ -37,8 +37,8 @@ function addBoard(id) {
     if (boardTitle == "") {
         alert('Board title cannot be empty.');
     } else {
-        // var alertText = 'Board named ' + boardTitle + ' is added.'
-        // alert(alertText);
+        var alertText = 'Board named ' + boardTitle + ' is added.'
+        alert(alertText);
         idValue++;
         var projectListUniqueId = "projectList_" + idValue;
         var boardUniqueId = "board_" + idValue;

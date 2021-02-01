@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Page</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="../styles/common.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../styles/task.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+
+<body>
+    <header>
+        Project Management App
+    </header>
+
+    <div class="container">
+        <h3>Board name: Lorem ipsum</h3>
+        <p>Project name: Lorem ipsum</p>
+        <div class="task-card">
+            <form>
+                <div class="row">
+                    <div class="mb-3 col">
+                        <label for="taskName" class="form-label">Task Name</label>
+                        <input type="text" class="form-control" id="taskName" aria-describedby="emailHelp">
+                    </div>
+
+                    <div class="mb-3 col">
+                        <label for="selectDropdown">Assignee</label>
+                        <select name="" id="selectDropdown" class="form-control">
+                            <option selected>Select one assignee</option>
+                            <option value="">Jitesh</option>
+                            <option value="">Acharya</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="mb-3 col">
+                        <label for="startDate">Start Date</label>
+                        <input type="date" class="form-control" name="" id="startDate">
+                    </div>
+
+                    <div class="mb-3 col">
+                        <label for="endDate">End Date</label>
+                        <input type="date" class="form-control" name="" id="endDate">
+                    </div>
+                </div>
+
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="isTaskComplete">
+                    <label class="form-check-label" for="isTaskComplete">Task Completed</label>
+                </div>
+                <button type="submit" class="btn btn-success">Add task</button>
+            </form>
+        </div>
+
+
+        <div class="taskList">
+            <div class="row">
+                <div class="col">
+                    Task Name
+                    <p><b>Test Task</b></p>
+                </div>
+                <div class="col">
+                    Start Date
+                    <p><b>dd/mm/yyyy</b></p>
+                </div>
+                <div class="col">
+                    End Date
+                    <p><b>dd/mm/yyyy</b></p>
+                </div>
+                <div class="col">
+                    Assignee
+                    <p><b>Jitesh</b></p>
+                </div>
+                <div class="col">
+                    Completed Status
+                    <p><b>Yes</b></p>
+                </div>
+                <div class="col hidden-xs">
+                    <button class="btn btn-success">Edit</button>
+                    <button class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="taskList">
+            <div class="row">
+                <div class="col">
+                    Task Name
+                    <p><b>Sample Task 2</b></p>
+                </div>
+                <div class="col">
+                    Start Date
+                    <p><b>dd/mm/yyyy</b></p>
+                </div>
+                <div class="col">
+                    End Date
+                    <p><b>dd/mm/yyyy</b></p>
+                </div>
+                <div class="col">
+                    Assignee
+                    <p><b>Marks</b></p>
+                </div>
+                <div class="col">
+                    Completed Status
+                    <p><b>No</b></p>
+                </div>
+                <div class="col hidden-xs">
+                    <button class="btn btn-success">Edit</button>
+                    <button class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
