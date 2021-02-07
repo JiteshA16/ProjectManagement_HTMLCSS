@@ -14,17 +14,17 @@
     <div class="container">
         <form>
             <label class="labelText">First name</label>
-            <input type="text" placeholder="eg., Jitesh" id="firstName" />
+            <input type="text" placeholder="eg., Jitesh" id="firstName" required/>
             <label class="labelText">Last name</label>
-            <input type="text" placeholder="eg., Acharya" id="lastName" />
+            <input type="text" placeholder="eg., Acharya" id="lastName" required/>
             <label>Email</label>
-            <input type="email" placeholder="eg., abcde@gmail.com" id="email" />
+            <input type="email" placeholder="eg., abcde@gmail.com" id="email" required/>
             <label id="password">Password</label>
-            <input type="password" placeholder="eg., abcde" id="password" />
+            <input type="password" placeholder="eg., abcde" id="password" required/>
             <label>Mobile</label>
-            <input type="tel" placeholder="eg., 9090909090" id="mobile" />
+            <input type="tel" placeholder="eg., 9090909090" id="mobile" required/>
         </form>
-        <button class="submit-button" onclick="submitPressed(firstName, lastName, email, password, mobile)">Submit</button>
+        <button class="submit-button" onclick="signUpAPICall(firstName, lastName, email, password, mobile)">Submit</button>
     </div>
 
     <script src="../scripts/index.js"></script>

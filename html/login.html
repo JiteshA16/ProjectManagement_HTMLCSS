@@ -14,14 +14,18 @@
         </h1>
     </div>
 
-    <form>
-        <label>Username</label>
-        <input type="email" placeholder="eg., abcde@gmail.com" />
-        <label>Password</label>
-        <input type="password" placeholder="eg., abcde" />
+    <div class="container">
+        <form>
+            <label>Username</label>
+            <input type="email" placeholder="eg., abcde@gmail.com" id="email" required/>
+            <label>Password</label>
+            <input type="password" placeholder="eg., abcde" id="password" required/>
+        </form>
 
-        <button class="login-button">Login</button>
-    </form>
+        <button class="login-button" onclick="loginAPICall(email, password)">Login</button>
+    </div>
+
+    <script src="../scripts/login.js"></script>
 </body>
 
 </html>

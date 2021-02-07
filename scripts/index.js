@@ -1,6 +1,6 @@
 var xhr = new XMLHttpRequest();
 
-function submitPressed(firstName, lastName, email, password, mobile) {
+function signUpAPICall(firstName, lastName, email, password, mobile) {
     var params = {
         first_name: firstName.value,
         last_name: lastName.value,
@@ -11,9 +11,9 @@ function submitPressed(firstName, lastName, email, password, mobile) {
     xhr.open('POST', 'http://localhost:8080/api/v1/signup');
     xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
     xhr.send(JSON.stringify(params));
-    xhr.onreadystatechange = sendRequest;
+    xhr.onreadystatechange = registerResponse;
 }
 
-function sendRequest() {
+function registerResponse() {
     console.log(xhr.readyState);
 }

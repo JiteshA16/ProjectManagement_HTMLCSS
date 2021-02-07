@@ -5,11 +5,17 @@ body {
     align-items: center;
 }
 
-form {
+.container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 30%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .top-division {
@@ -17,7 +23,6 @@ form {
     justify-content: center;
     margin: 0px;
 }
-
 
 label {
     font-family: sans-serif;

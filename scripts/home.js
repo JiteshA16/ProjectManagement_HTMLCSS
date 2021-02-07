@@ -1,3 +1,64 @@
+var xhr = new XMLHttpRequest();
+
+/* Get Boards API Call */
+function getBoardsAPICall() {
+    xhr.open('GET', 'http://localhost:8080/api/v1/boards');
+    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+    // Retrieving access token from session storage
+    var accessToken = sessionStorage.getItem('access-token');
+    console.log('AccessToken', accessToken);
+    xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
+    xhr.send();
+    xhr.onreadystatechange = getBoardsResponse;
+}
+
+function getBoardsResponse() {
+    console.log(xhr.responseText);
+    if (xhr.readyState === 4 && xhr.status === 200) {
+        var boardList = JSON.parse(xhr.responseText);
+        var boards = boardList.boards;
+        boards.forEach(function(value, index) {
+            document.getElementById('boardBlockList').innerHTML += '<p>' + value.name + '</p>';
+        });
+        console.log(boardList);
+    }
+}
+
+/* Add Board API Call */
+function addBoardAPICall(boardName) {
+    var boardTitle = boardName.value;
+    if (boardTitle == "") {
+        alert('Board title cannot be empty.');
+    } else {
+        // Retrieving User details from session storage 
+        var userDetails = JSON.parse(sessionStorage.getItem('user-detail'));
+        var params = {
+            "description": "A new board",
+            "name": boardTitle,
+            "owner_id": userDetails.id
+        };
+
+        xhr.open('POST', 'http://localhost:8080/api/v1/boards');
+        xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+        // Retrieving access token from session storage
+        var accessToken = sessionStorage.getItem('access-token');
+        console.log('AccessToken', accessToken);
+        xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
+        xhr.send(JSON.stringify(params));
+
+        xhr.onreadystatechange = addBoardResponse;
+    }
+}
+
+function addBoardResponse() {
+    console.log(xhr.responseText);
+    if (xhr.readyState === 4) {
+        getBoardsAPICall();
+    }
+}
+
+
+
 var projectListData = [{
         name: 'Javascript One'
     },
