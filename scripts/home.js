@@ -18,7 +18,11 @@ function getBoardsResponse() {
         var boardList = JSON.parse(xhr.responseText);
         var boards = boardList.boards;
         boards.forEach(function(value, index) {
-            document.getElementById('boardBlockList').innerHTML += '<p>' + value.name + '</p>';
+            var template = '<div id=' + value.id + ' onclick=showProjects(' + value.id.toString() + ')>' + value.name +
+                '<button class="delete-btn" onclick="deleteBoard(' + value.id.toString() + ')">Delete Board</button>' +
+                '<button class="project-btn" onclick="addProject(' + value.id.toString() + ')">Add Project</button>' +
+                '</div>';
+            document.getElementById('boardBlockList').innerHTML += template;
         });
         console.log(boardList);
     }
@@ -32,21 +36,26 @@ function addBoardAPICall(boardName) {
     } else {
         // Retrieving User details from session storage 
         var userDetails = JSON.parse(sessionStorage.getItem('user-detail'));
-        var params = {
-            "description": "A new board",
-            "name": boardTitle,
-            "owner_id": userDetails.id
-        };
 
-        xhr.open('POST', 'http://localhost:8080/api/v1/boards');
-        xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-        // Retrieving access token from session storage
-        var accessToken = sessionStorage.getItem('access-token');
-        console.log('AccessToken', accessToken);
-        xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
-        xhr.send(JSON.stringify(params));
+        if (userDetails.role.id === 105) {
+            alert('Only admins can add a board.')
+        } else {
+            var params = {
+                "description": "A new board",
+                "name": boardTitle,
+                "owner_id": userDetails.id
+            };
 
-        xhr.onreadystatechange = addBoardResponse;
+            xhr.open('POST', 'http://localhost:8080/api/v1/boards');
+            xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+            // Retrieving access token from session storage
+            var accessToken = sessionStorage.getItem('access-token');
+            console.log('AccessToken', accessToken);
+            xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
+            xhr.send(JSON.stringify(params));
+
+            xhr.onreadystatechange = addBoardResponse;
+        }
     }
 }
 
@@ -69,26 +78,88 @@ var projectListData = [{
 
 //showProjects();
 
+/* Show projects for respective boards API call */
 function showProjects(listId) {
-    projectListData.forEach(function(value, index) {
-        var template =
-            '<div class="project-card">' +
-            value.name +
-            '<ul>' +
-            '<li>Task one</li>' +
-            '<li>Task two</li>' +
-            '</ul>' +
-            '</div>';
-        if (listId) {
+    var urlString = 'http://localhost:8080/api/v1/boards/' + listId + '/projects';
+    xhr.open('GET', urlString);
+    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+    // Retrieving access token from session storage
+    var accessToken = sessionStorage.getItem('access-token');
+    console.log('AccessToken', accessToken);
+    xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
+    xhr.send();
+    xhr.onreadystatechange = getProjectsResponse;
+}
+
+function getProjectsResponse() {
+    if (xhr.readyState === 4) {
+        var projectList = JSON.parse(xhr.responseText);
+        var projects = projectList.projects;
+        projects.forEach(function(value, index) {
+            var template =
+                '<div class="project-card">' +
+                value.name +
+                '<ul>' +
+                '<li>Task one</li>' +
+                '<li>Task two</li>' +
+                '</ul>' +
+                '</div>';
             document.getElementById(listId).innerHTML += template;
-        } else {
-            document.getElementById('projectList').innerHTML += template;
-        }
-    });
+        });
+    }
 }
 
 function removeProjects() {
     //document.getElementById('projectList').innerHTML = '';
+}
+
+/* Delete board API Call */
+function deleteBoard(boardId) {
+    event.stopPropagation();
+    var url = 'http://localhost:8080/api/v1/boards/' + boardId;
+    xhr.open('DELETE', url);
+    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+    // Retrieving access token from session storage
+    var accessToken = sessionStorage.getItem('access-token');
+    xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
+    xhr.send();
+    xhr.onreadystatechange = deleteBoardResponse(boardId);
+}
+
+function deleteBoardResponse(boardId) {
+    if (xhr.readyState === 4) {
+        console.log(xhr.responseText);
+        document.getElementById(boardId).remove();
+    }
+}
+
+/* Add Project API Call */
+function addProject(boardId) {
+    event.stopPropagation();
+    // Retrieving User details from session storage 
+    var userDetails = JSON.parse(sessionStorage.getItem('user-detail'));
+    var params = {
+        "description": "New Project via API",
+        "end_date": new Date(),
+        "name": "Project New Added",
+        "owner_id": userDetails.id,
+        "start_date": new Date()
+    };
+    var url = 'http://localhost:8080/api/v1/boards/' + boardId + '/projects';
+    xhr.open('POST', url);
+    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+    // Retrieving access token from session storage
+    var accessToken = sessionStorage.getItem('access-token');
+    xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
+    xhr.send(JSON.stringify(params));
+
+    xhr.onreadystatechange = addProjectResponse;
+}
+
+function addProjectResponse() {
+    if (xhr.readyState === 4) {
+        console.log(xhr.responseText);
+    }
 }
 
 var idValue = 1;

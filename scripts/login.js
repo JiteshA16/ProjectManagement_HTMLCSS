@@ -18,6 +18,6 @@ function loginResponse() {
         // Storing User details and Access token in session storage
         sessionStorage.setItem('user-detail', xhr.responseText);
         sessionStorage.setItem('access-token', xhr.getResponseHeader('access-token'));
-        window.location.href = './home.html';
+        //window.location.href = './home.html';
     }
 }
